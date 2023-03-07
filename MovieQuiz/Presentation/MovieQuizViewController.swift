@@ -2,31 +2,11 @@ import UIKit
 
 final class MovieQuizViewController: UIViewController {
     /// MARK: - Lifecycle
-    
-    ///структура вопросов
-    struct QuizQuestion {
-        let image: String
-        let text: String
-        let correctAnswer: Bool
-    }
-    
-    ///состояние "Вопрос задан":
-    struct QuizStepViewModel {
-        let image: UIImage
-        let question: String
-        let questionNumber: String
-    }
+
     
     ///состояние "Результат ответа":
     struct QuizQuestionResultsViewModel {
         let answer: Bool
-    }
-    
-    ///состояние "Результат квиза":
-    struct QuizResultsViewModel {
-        let title: String
-        let text: String
-        let buttonText: String
     }
     
     
@@ -42,42 +22,7 @@ final class MovieQuizViewController: UIViewController {
     private var currentQuestionIndex: Int = 0
     ///переменная индекс количества правильных ответов
     private var correctAnswers: Int = 0
-    
-    
-    ///переменная вопросы, содержит массив с данными
-    private let questions: [QuizQuestion] = [
-        QuizQuestion(image: "The Godfather",
-                     text: "Рейтинг этого фильма больше чем 6?",
-                     correctAnswer: true),
-        QuizQuestion(image: "The Dark Knight",
-                     text: "Рейтинг этого фильма больше чем 6?",
-                     correctAnswer: true),
-        QuizQuestion(image: "Kill Bill",
-                     text: "Рейтинг этого фильма больше чем 6?",
-                     correctAnswer: true),
-        QuizQuestion(image: "The Avengers",
-                     text: "Рейтинг этого фильма больше чем 6?",
-                     correctAnswer: true),
-        QuizQuestion(image: "Deadpool",
-                     text: "Рейтинг этого фильма больше чем 6?",
-                     correctAnswer: true),
-        QuizQuestion(image: "The Green Knight",
-                     text: "Рейтинг этого фильма больше чем 6?",
-                     correctAnswer: true),
-        QuizQuestion(image: "Old",
-                     text: "Рейтинг этого фильма больше чем 6?",
-                     correctAnswer: false),
-        QuizQuestion(image: "The Ice Age Adventures of Buck Wild",
-                     text: "Рейтинг этого фильма больше чем 6?",
-                     correctAnswer: false),
-        QuizQuestion(image: "Tesla",
-                     text: "Рейтинг этого фильма больше чем 6?",
-                     correctAnswer: false),
-        QuizQuestion(image: "Vivarium",
-                     text: "Рейтинг этого фильма больше чем 6?",
-                     correctAnswer: false)
-    ]
-    
+
     
     ///функция переопределения. Добавляем константу вью модели
     override func viewDidLoad() {
@@ -97,9 +42,7 @@ final class MovieQuizViewController: UIViewController {
         noButton.isEnabled = true
     }
     
-    
-    
-    
+
     ///делаем рамку картинки красной или зеленой в зависимости от ответа
     private func showAnswerResult(isCorrect: Bool) {
         yesButton.isEnabled = false
