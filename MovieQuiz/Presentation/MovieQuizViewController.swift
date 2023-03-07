@@ -114,7 +114,8 @@ final class MovieQuizViewController: UIViewController {
         imageView.layer.borderColor = isCorrect ? UIColor.green.cgColor : UIColor.red.cgColor ///проверка Да или Нет
         
         ///запуск задачи через 1 секунду
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
+            guard let self = self else { return }
             self.yesButton.isEnabled = true
             self.noButton.isEnabled = true
             self.showNextQuestionOrResults()
@@ -158,15 +159,10 @@ final class MovieQuizViewController: UIViewController {
             message: result.text,
             preferredStyle: .alert)
         
-        let action = UIAlertAction(
-            title: result.buttonText,
-            style: .default) { [weak self]
-                _ in guard let self else {
-                    return
-                }
+        let action = UIAlertAction(title: result.buttonText, style: .default) { [weak self]
+                _ in guard let self else { return }
                 
                 self.currentQuestionIndex = 0
-                
                 ///сброс счетчика ответов
                 self.correctAnswers = 0
                 
