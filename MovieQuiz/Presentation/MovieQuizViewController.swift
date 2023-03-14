@@ -28,6 +28,8 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         imageView.layer.cornerRadius = 20
         questionFactory = QuestionFactory(delegate: self)
         questionFactory?.requestNextQuestion()
+        alertPresenter = AlertPresenter(delegate: self)
+        statisticService = StatisticServiceImplementation()
     }
     
     
@@ -53,6 +55,13 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         counterLabel.text = step.questionNumber
         yesButton.isEnabled = true
         noButton.isEnabled = true
+    }
+    
+    
+    private func restartGame() {
+        currentQuestionIndex = 0
+        correctAnswers = 0
+        questionFactory?.requestNextQuestion()
     }
     
     
@@ -88,61 +97,33 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
 
     private func showNextQuestionOrResults() {
         if currentQuestionIndex == questionsAmount - 1 {
-            let text = correctAnswers == questionsAmount ?
-            "Поздравляем, Вы ответили на 10 из 10!" :
-            "Вы ответили на \(correctAnswers) из 10, попробуйте еще раз!"
+            guard let statisticService = statisticService else { return }
+            statisticService.store(correct: correctAnswers, total: questionsAmount)
+            let totalAccuracyPercentage = (String(format: "%.2f", statisticService.totalAccuracy) + "%")
+            let bestGameDate = statisticService.bestGame.date.dateTimeString
+            let totalGamesCount = statisticService.gamesCount
+            let currentCorrectRecord = statisticService.bestGame.correct
+            let currentTotalRecord = statisticService.bestGame.total
+            let text = """
+                Ваш результат: \(correctAnswers)/\(questionsAmount)
+                Количество сыгранных квизов: \(totalGamesCount)
+                Рекорд: \(currentCorrectRecord)/\(currentTotalRecord) (\(bestGameDate)
+                Средняя точность: \(totalAccuracyPercentage)
+            """
             
-            let alertModel = AlertModel(title: "Раунд закончен", message: text, buttonText: "Сыграть еще раз") { [weak self] _ in
+            let viewModel = AlertModel(title: "Этот раунд закончен!", message: text, buttonText: "Сыграть ещё раз", completion: { [weak self] in
                 guard let self = self else { return }
-                
-                self.currentQuestionIndex = 0
-                self.correctAnswers = 0
-                self.questionFactory?.requestNextQuestion()
-            }
-            
-            alertPresenter.showAlert(in: self, with: alertModel)
+                self.restartGame()
+                print("Конец")
+            })
+            alertPresenter?.showAlert(model: viewModel)
         } else {
             currentQuestionIndex += 1
             questionFactory?.requestNextQuestion()
-            imageView.layer.borderWidth = 0
             
-            /*
-            let viewModel = QuizResultsViewModel(
-                title: "Этот раунд окончен!",
-                text: text,
-                buttonText: "Сыграть ещё раз")
-            show(quiz: viewModel)
-        } else {
-            currentQuestionIndex += 1
-            self.questionFactory?.requestNextQuestion()
-             */
         }
-            
     }
-    
-    private func show(quiz result: QuizResultsViewModel) {
-        
-        /*
-        let alert = UIAlertController(
-            title: result.title,
-            message: result.text,
-            preferredStyle: .alert)
-        */
-        
-        let action = UIAlertAction(title: result.buttonText, style: .default) { [weak self] _ in guard let self = self else { return }
-            
-            self.currentQuestionIndex = 0
-            self.correctAnswers = 0
-            
-            self.questionFactory?.requestNextQuestion()
-        }
-        
-        /*
-        alert.addAction(action)
-        
-        self.present(alert, animated: true, completion: nil)
-         */
-    }
+
 
 
     // MARK: - @IBAction
