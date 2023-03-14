@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol AlertPresenterProtokol {
+protocol AlertPresenterProtocol {
     func showAlert(model: AlertModel)
 }
