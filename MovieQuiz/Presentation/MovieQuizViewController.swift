@@ -11,6 +11,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     @IBOutlet private var counterLabel: UILabel!
     @IBOutlet private var yesButton: UIButton!
     @IBOutlet private var noButton: UIButton!
+    @IBOutlet private var activityIndicator: UIActivityIndicatorView!
     
     
     private let questionsAmount: Int = 10
@@ -58,6 +59,30 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
     }
     
     
+    private func showLoadingIndicator() {
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+    }
+    
+    /*
+    private func showNetworkError(message: String) {
+        hideLoadingIndicator()
+        
+        let model = AlertModel(
+            title: "Ошибка",
+            message: message,
+            buttonText: "Попробовать ещё раз") { [weak self] in
+                guard let self = self else { return }
+                
+                self.currentQuestionIndex = 0
+                self.correctAnswers = 0
+                
+                self.questionFactory?.requestNextQuestion()
+            }
+        alertPresenter.show(in: self, model: model)
+    }
+    */
+    
     private func restartGame() {
         currentQuestionIndex = 0
         correctAnswers = 0
@@ -71,12 +96,11 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
         if isCorrect {
             correctAnswers += 1
         }
-        
         imageView.layer.masksToBounds = true
         imageView.layer.borderWidth = 8
         imageView.layer.cornerRadius = 20
         imageView.layer.borderColor = isCorrect ? UIColor.green.cgColor : UIColor.red.cgColor
-
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
             guard let self = self else { return }
             self.yesButton.isEnabled = true
@@ -94,7 +118,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
             questionNumber: "\(currentQuestionIndex + 1)/\(questionsAmount)")
     }
     
-
+    
     private func showNextQuestionOrResults() {
         if currentQuestionIndex == questionsAmount - 1 {
             guard let statisticService = statisticService else { return }
@@ -107,7 +131,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
             let text = """
                 Ваш результат: \(correctAnswers)/\(questionsAmount)
                 Количество сыгранных квизов: \(totalGamesCount)
-                Рекорд: \(currentCorrectRecord)/\(currentTotalRecord) (\(bestGameDate)
+                Рекорд: \(currentCorrectRecord)/\(currentTotalRecord) (\(bestGameDate))
                 Средняя точность: \(totalAccuracyPercentage)
             """
             
@@ -123,9 +147,9 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate {
             
         }
     }
-
-
-
+    
+    
+    
     // MARK: - @IBAction
     
     @IBAction private func yesButtonClicked(_ sender: UIButton) {
