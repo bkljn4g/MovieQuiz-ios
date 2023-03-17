@@ -9,7 +9,7 @@ import Foundation
 import XCTest
 @testable import MovieQuiz
 
-final class MovieQuizViewControllerProtocolMock: MovieQuizViewControllerProtocol { 
+final class MovieQuizViewControllerProtocolMock: MovieQuizViewControllerProtocol {
     func show(quiz step: QuizStepViewModel) {
         
     }
@@ -47,6 +47,4 @@ final class MovieQuizPresenterTests: XCTestCase {
         XCTAssertEqual(viewModel.question, "Question Text")
         XCTAssertEqual(viewModel.questionNumber, "1/10")
     }
-    
-    
 }
