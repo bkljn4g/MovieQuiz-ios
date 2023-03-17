@@ -7,9 +7,12 @@
 
 import Foundation
 
+protocol NetworkRouting {
+    func fetch(url: URL, handler: @escaping (Result<Data, Error>) -> Void)
+}
 
 /// URL загрузка данных
-struct NetworkClient {
+struct NetworkClient: NetworkRouting {
     
     private enum NetworkError: Error {
         case codeError
@@ -29,8 +32,8 @@ struct NetworkClient {
             // Успешный код ответа
             if let response = response as? HTTPURLResponse,
                response.statusCode < 200 || response.statusCode >= 300 {
-                handler(.failure(NetworkError.codeError))
-                return
+               handler(.failure(NetworkError.codeError))
+               return
             }
             
             // Возврат данных
