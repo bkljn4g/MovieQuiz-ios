@@ -35,7 +35,7 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
             statisticService = StatisticServiceImplementation()
             questionFactory = QuestionFactory(moviesLoader: MoviesLoader(), delegate: self)
             questionFactory?.loadData()
-            viewController.showLoadingIndicator()
+            //viewController.showLoadingIndicator()
         }
     
     
@@ -133,7 +133,7 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
                     })
                 alertPresenter?.showAlert(model: viewModel)
             } else {
-                viewController?.showLoadingIndicator()
+                //viewController?.showLoadingIndicator()
                 self.switchToNextQuestion()
                 questionFactory?.requestNextQuestion()
             }
