@@ -25,7 +25,6 @@ final class MovieQuizUITests: XCTestCase {
         app = nil
     }
     
-    
     func testYesButton() {
         //sleep(3)
         let firstPoster = app.images["Poster"]
@@ -40,7 +39,6 @@ final class MovieQuizUITests: XCTestCase {
         let indexLabel = app.staticTexts["Index"]
         XCTAssertEqual(indexLabel.label, "2/10")
     }
-    
     
     func testNoButton() {
         
@@ -59,7 +57,6 @@ final class MovieQuizUITests: XCTestCase {
         XCTAssertEqual(indexLabel.label, "2/10")
     }
     
-    
     func testGameOverAlert() {
         for _ in 1...10{
             app.buttons["Yes"].tap()
@@ -72,7 +69,6 @@ final class MovieQuizUITests: XCTestCase {
         XCTAssertTrue(alert.label == "Этот раунд окончен!")
         XCTAssert(alert.buttons.firstMatch.label == "Сыграть еще раз")
     }
-    
     
     func testAlertDismiss() {
         for _ in 1...10 {

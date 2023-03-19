@@ -13,11 +13,9 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
     @IBOutlet private var noButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    
     private var presenter: MovieQuizPresenter!
     private var alertPresenter: AlertPresenter?
     private var statisticService: StatisticService?
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,23 +23,14 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
         activityIndicator.hidesWhenStopped = true
         presenter = MovieQuizPresenter(viewController: self, alertPresenter: AlertPresenter(viewController: self))
         alertPresenter = AlertPresenter(viewController: self)
-        //showLoadingIndicator() // заменила на hidesWhenStopped
         imageView.layer.cornerRadius = 20
     }
-    
-    /*
-    func showLoadingIndicator() {
-        activityIndicator.isHidden = false
-        activityIndicator.startAnimating()
-    }
-    */
     
     func hideLoadingIndicator() {
         activityIndicator.isHidden = true
         activityIndicator.stopAnimating()
     }
 
-    
     func show(quiz step: QuizStepViewModel) {
         imageView.layer.cornerRadius = 20
         imageView.image = step.image
@@ -50,7 +39,6 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
         imageView.layer.borderWidth = 0
         
     }
-    
     
     func showNetworkError(message: String) {
         let model = AlertModel(
@@ -65,12 +53,10 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
         alertPresenter?.showAlert(model: model)
     }
 
-    
     func switchButtons(isEnabled: Bool) {
         yesButton.isEnabled = isEnabled
         noButton.isEnabled = isEnabled
     }
-    
     
     func highLightImageBorder(isCorrect: Bool) {
         imageView.layer.masksToBounds = true
@@ -78,12 +64,10 @@ final class MovieQuizViewController: UIViewController, MovieQuizViewControllerPr
         drawBorder(color: isCorrect ? UIColor.green.cgColor : UIColor.red.cgColor)
     }
     
-    
     private func drawBorder(color: CGColor) {
         imageView.layer.borderWidth = 8
         imageView.layer.borderColor = color
     }
-    
 
     @IBAction private func yesButtonClicked(_ sender: UIButton) {
         presenter.yesButtonClicked()

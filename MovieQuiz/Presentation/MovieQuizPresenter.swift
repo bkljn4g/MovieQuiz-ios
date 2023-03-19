@@ -22,7 +22,6 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
         }
     }
     
-    
     private weak var viewController: MovieQuizViewControllerProtocol?
     private var questionFactory: QuestionFactoryProtocol?
     private var statisticService: StatisticService?
@@ -35,9 +34,7 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
             statisticService = StatisticServiceImplementation()
             questionFactory = QuestionFactory(moviesLoader: MoviesLoader(), delegate: self)
             questionFactory?.loadData()
-            //viewController.showLoadingIndicator()
         }
-    
     
         private let questionsAmount: Int = 10
         private var currentQuestionIndex: Int = 0
@@ -53,24 +50,20 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
             viewController?.showNetworkError(message: error.localizedDescription)
         }
         
-        
         func yesButtonClicked() {
             didAnswer(isYes: true)
         }
-    
     
         func noButtonClicked() {
             didAnswer(isYes: false)
         }
         
-    
         private func didAnswer(isCorrect: Bool) {
             if isCorrect {
                 correctAnswers += 1
             }
         }
         
-    
         private func didAnswer(isYes: Bool) {
             guard let currentQuestion = currentQuestion else {
                 return
@@ -81,16 +74,13 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
             showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
         }
         
-    
         private func isLastQuestion() -> Bool {
             currentQuestionIndex == questionsAmount - 1
         }
         
-        
         func switchToNextQuestion() {
             currentQuestionIndex += 1
         }
-    
     
         func restartGame() {
             currentQuestionIndex = 0
@@ -98,7 +88,6 @@ final class MovieQuizPresenter: QuestionFactoryDelegate {
             questionFactory?.requestNextQuestion()
         }
         
-    
         func convert(model: QuizQuestion) -> QuizStepViewModel {
             QuizStepViewModel(
                 image: UIImage(data: model.image) ?? UIImage(),

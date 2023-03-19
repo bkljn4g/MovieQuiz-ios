@@ -58,7 +58,6 @@ final class StatisticServiceImplementation: StatisticService{
         }
     }
     
-    
     private enum Keys: String {
         case correct, total, bestGame, gamesCount
     }
@@ -72,6 +71,5 @@ final class StatisticServiceImplementation: StatisticService{
         
         correct += Double(currentGameRecord.correct)
         total += Double(currentGameRecord.total)
-        
     }
 }

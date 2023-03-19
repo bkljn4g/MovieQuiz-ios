@@ -10,7 +10,6 @@ import Foundation
 protocol MovieQuizViewControllerProtocol: AnyObject {
     func show(quiz step: QuizStepViewModel)
     func highLightImageBorder(isCorrect: Bool)
-    //func showLoadingIndicator() - меняю на hidesWhenStopped
     func hideLoadingIndicator()
     func showNetworkError(message: String)
     func switchButtons(isEnabled: Bool)
