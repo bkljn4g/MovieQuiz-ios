@@ -14,10 +14,12 @@ MovieQuiz - это приложение с квизами о фильмах из
 <p align="left">
   <img src="https://github.com/bkljn4g/ImageQuizScreenshot/blob/main/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202024-06-05%20%D0%B2%2015.28.21.png" width="300" height="620">
   <img src="https://github.com/bkljn4g/ImageQuizScreenshot/blob/main/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202024-06-05%20%D0%B2%2015.27.39.png" width="300" height="620">
-  <img src="https://github.com/bkljn4g/ImageQuizScreenshot/blob/main/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202024-06-05%20%D0%B2%2015.27.50.png" width="300" height="620">
 </p>
 <p align="left">
-  <img src="https://github.com/bkljn4g/ImageQuizScreenshot/blob/main/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202024-06-05%20%D0%B2%2015.28.40.png" width="300" height="620">
+    <img src="https://github.com/bkljn4g/ImageQuizScreenshot/blob/main/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202024-06-05%20%D0%B2%2015.27.50.png" width="300" height="620">
+    <img src="https://github.com/bkljn4g/ImageQuizScreenshot/blob/main/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202024-06-05%20%D0%B2%2015.28.40.png" width="300" height="620">
+</p>
+<p align="left">
   <img src="https://github.com/bkljn4g/ImageQuizScreenshot/blob/main/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202024-06-05%20%D0%B2%2015.28.59.png" width="300" height="620">
   <img src="https://github.com/bkljn4g/ImageQuizScreenshot/blob/main/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202024-06-05%20%D0%B2%2015.29.10.png" width="300" height="620">
 </p>
